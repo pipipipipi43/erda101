@@ -90,7 +90,7 @@ stages:
 1. 用户通过 pipeline.yml 调用创建流水线的 api, 创建的时候会去校验各个占位符是否存在对应的任务，不存在就会报错，当校验完毕，就会将整个 pipeline.yml 转化为流水线表中的数据，stages 会转化为任务表中的数据，
 刚开始所有数据都是初始化阶段，创建完后会往 etcd 中塞入 流水线ID，等待监听执行
 2. pipeline 组件启动后会去监听 etcd, 当获取到 pipelineID 的时候，会调用 reconciler 方法逐步推进流水线
-3. reconciler 进一步调用 reconcilerTask 去推进任务的执行， task 有一个生命周期调度，在 prepare 阶段的时候会去将占位符替换成对应的值，比如 ${{ outputs.actionName.actionResultName }}, 
+3. reconciler 进一步调用 reconcileTask 去推进任务的执行， task 有一个生命周期调度，在 prepare 阶段的时候会去将占位符替换成对应的值，比如 ${{ outputs.actionName.actionResultName }}, 
 就会遍历该任务之上的任务的出参，然后根据任务名称和出参名进行替换成对应的值，${{ configs.key }} 就是获取用户的流水线变量配置，将对应的 key 进行替换，${{ random.randomType }} 会根据需要随机的类型进行随机出数据然后替换，
 ${{ dirs.actionName }} 就会遍历该任务之上的任务，将各个任务的文件网络挂载并解压到对应的目录，例如有个任务 A 他的工作路径就是 /.pipeline/actions/context/A, 依次类推，各个任务就都在 context 目录下对应的任务名下，流水线中的占位符就会替换成该路径，从而可以访问任务的文件
 4. create 当 prepare 状态执行代码后会变更任务状态为 create, create 则会根据 action 的 scheduler 去选择对应的调度器，比如 EDAS，k8s 或者内存调度器去创建任务
