@@ -5,11 +5,10 @@ package pb
 
 import (
 	fmt "fmt"
-	math "math"
-
 	_ "github.com/erda-project/erda-proto-go/oap/common/pb"
 	proto "github.com/golang/protobuf/proto"
 	_ "google.golang.org/protobuf/types/known/structpb"
+	math "math"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.

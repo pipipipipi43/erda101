@@ -5,15 +5,14 @@ package pb
 
 import (
 	context "context"
-	http1 "net/http"
-	strings "strings"
-
 	transport "github.com/erda-project/erda-infra/pkg/transport"
 	http "github.com/erda-project/erda-infra/pkg/transport/http"
 	httprule "github.com/erda-project/erda-infra/pkg/transport/http/httprule"
 	runtime "github.com/erda-project/erda-infra/pkg/transport/http/runtime"
 	urlenc "github.com/erda-project/erda-infra/pkg/urlenc"
 	pb "github.com/erda-project/erda-proto-go/common/pb"
+	http1 "net/http"
+	strings "strings"
 )
 
 // This is a compile-time assertion to ensure that this generated file

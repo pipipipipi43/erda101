@@ -7,9 +7,8 @@ package pb
 
 import (
 	fmt "fmt"
-	math "math"
-
 	proto "github.com/golang/protobuf/proto"
+	math "math"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -18,8 +17,5 @@ var _ = fmt.Errorf
 var _ = math.Inf
 
 func (this *Relation) Validate() error {
-	return nil
-}
-func (this *Principal) Validate() error {
 	return nil
 }
